@@ -1,7 +1,6 @@
 ﻿
 int score = 0;
 bool validGuess = false;
-bool gameFinish = false;
 int quizNum = 0;
 
 // Member, Article, Achieve, Conclusion, Bottom, Ally, Spray, Carry, Jail, Shoot, Galaxy, Compact, Highway, Sacred, Tool
@@ -20,6 +19,7 @@ Console.WriteLine("This Is A '15 Level' Quiz To Increase Or Train Your Knowledge
 Console.WriteLine("You Are Going To Be Given One Word In Maori And You Are To Type From 4 Words Given That Are Translated In English");
 Console.WriteLine("If You Guess The Right Translated Word You Are Given Points \nIf You Guess Incorrectly Your Points Is Reduced\n\n");
 
+Console.WriteLine("If You Wish To Stop The Quiz Type '-1' During The Quiz.");
 Console.WriteLine("To Start The Quiz Type: 'start' ");
 string start = Console.ReadLine();
 
@@ -36,7 +36,7 @@ if (start.ToLower() == "start")
  
 
 
-    while (gameFinish != true)
+    while (quizNum != 15)
     {
         string guess = Console.ReadLine();
         guess = guess.ToLower();
@@ -44,7 +44,7 @@ if (start.ToLower() == "start")
         {
             for (int j = 0; j < answers.Length; j++)
             {
-                if (guess == answers[j].ToLower() || guess == options[i].ToLower())
+                if (guess == answers[j].ToLower() || guess == options[i].ToLower() || guess == "-1")
                 {
                     validGuess = true;
                 }
@@ -54,6 +54,10 @@ if (start.ToLower() == "start")
         {
             Console.WriteLine("Please Type One Of The Following Words");
 
+        }
+        else if (guess == "-1")
+        {
+            break;
         }
         else if (guess != answers[quizNum])
         {
@@ -71,10 +75,6 @@ if (start.ToLower() == "start")
             score += 2;
             quizNum++;
 
-            if (quizNum == 15)
-            {
-                break;
-            }
             switch (quizNum)
             {
                 case  1:
@@ -151,5 +151,6 @@ if (start.ToLower() == "start")
         validGuess = false;
     }
 
-    Console.WriteLine($"Your Total Score Is: {score}/30");
+    Console.WriteLine($"Your Total Score Is: {score}/30\n");
 }
+
