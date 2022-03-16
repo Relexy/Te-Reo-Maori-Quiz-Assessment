@@ -1,18 +1,14 @@
-﻿
+﻿/* Te Reo Maori Quiz Assessment */
+
+
 int score = 0;
 bool validGuess = false;
 int quizNum = 0;
 
-// Member, Article, Achieve, Conclusion, Bottom, Ally, Spray, Carry, Jail, Shoot, Galaxy, Compact, Highway, Sacred, Tool
+// words = Maori Words | answers = Correct Word | options = Filler Words
 string[] words = new string[] { "mema", "atikara", "tutuki", "mutunga", "whakatakere", "haumi", "wairehu", "pakihere", "whare herehere", "pipihi", "ikarangi", "kiato", "huanui", "puaroa", "keteparaha" };
-string[] answers = new string[] { "Member", "Article", "Achieve", "Conclusion", "Bottom", "Ally", "Spray", "Carry", "Jail", "Shoot", "Galaxy", "Compact", "Highway", "Sacred", "Tool" };
+string[] answers = new string[] { "member", "article", "achieve", "conclusion", "bottom", "ally", "spray", "carry", "jail", "shoot", "galaxy", "compact", "highway", "sacred", "tool" };
 string[] options = new string[] { "dilemma", "memory", "remember", "attic", "attend", "athletic", "agile", "trolley", "trust", "measure", "mountain", "mechanic", "withdraw", "waiter", "builder", "heat", "helmet", "helping", "wrestle", "wardrobe", "wine", "positivity", "contain", "clapping", "mansion", "construction", "mall", "peeking", "produce", "liar", "inclusive", "irony", "feast", "know", "kidney", "prestige", "headquarters", "hardship", "harbor", "sacrifice", "smash", "portal", "container", "kitchen", "position" };
-
-for (int i = 0; i < answers.Length; i++)
-{
-    answers[i] = answers[i].ToLower();
-}
-
 
 
 Console.WriteLine("This Is A '15 Level' Quiz To Increase Or Train Your Knowledge On The Te Reo Maori Language");
@@ -40,10 +36,11 @@ if (start.ToLower() == "start")
     {
         string guess = Console.ReadLine();
         guess = guess.ToLower();
-        for (int i = 0; i < options.Length; i++)
+        for (int i = 0; i < options.Length; i++) // Loops through the options Array With Index i
         {
-            for (int j = 0; j < answers.Length; j++)
+            for (int j = 0; j < answers.Length; j++) // Loops through the answers Array With Index j
             {
+                // Accepts Input If It's A Word In answers, options Array, or -1
                 if (guess == answers[j].ToLower() || guess == options[i].ToLower() || guess == "-1")
                 {
                     validGuess = true;
@@ -52,20 +49,20 @@ if (start.ToLower() == "start")
         }
         if (validGuess != true)
         {
-            Console.WriteLine("Please Type One Of The Following Words");
+            Console.WriteLine("Please Type One Of The Following Words"); // If Input Isn't A Word In answers, options Array, or = -1
 
         }
         else if (guess == "-1")
         {
-            break;
+            break; // Ends Quiz When Input = -1
         }
-        else if (guess != answers[quizNum])
+        else if (guess != answers[quizNum]) // If It's A Valid Input But Not Answer
         {
-            Console.WriteLine("Incorrect!");
+            Console.WriteLine("Incorrect!"); 
             score--;
             if (score < 0)
             {
-                score = 0;
+                score = 0; // Score Won't Go Less Than 0
             }
 
         }
