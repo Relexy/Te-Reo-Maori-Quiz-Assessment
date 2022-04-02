@@ -158,7 +158,7 @@ if (guess != "-1")
     Console.WriteLine("This Is The End Of The '15 Level' Te Reo Maori Langauage Quiz.\n");
     Console.WriteLine("If You Wish To Hone Your Knowledge Of The Te Reo Maori Language With Another '15 Levels' Type 'start'. ");
     Console.WriteLine("If You Want To Exit Now Or Anytime During The Levels Type '-1'.\n");
-    Console.WriteLine("To Start The Quiz Type: 'start'\nOR\nTo Exit The Quiz Type: '1' ");
+    Console.WriteLine("To Start The Quiz Type: 'start'\nOR\nTo Exit The Quiz Type: '-1' ");
     start = Console.ReadLine();
 
     while (start.ToLower() != "start")
