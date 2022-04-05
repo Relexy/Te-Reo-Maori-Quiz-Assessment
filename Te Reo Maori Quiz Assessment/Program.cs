@@ -168,7 +168,7 @@ if (guess != "-1")
             quizNum = 30;
             break;
         }
-        Console.WriteLine("Please Type 'start' To Begin The Quiz.");
+        Console.WriteLine("Please Type 'start' To Begin The Quiz.\nOR\nPlease Type '-1' To Exit The Quiz");
         start = Console.ReadLine();
     }
 
