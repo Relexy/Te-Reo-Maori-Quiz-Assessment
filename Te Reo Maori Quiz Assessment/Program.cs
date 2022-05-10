@@ -10,9 +10,10 @@ string guess = "";
 string[] words = new string[] { "mema", "atikara", "tutuki", "mutunga", "whakatakere", "haumi", "wairehu", "pakihere", "whare herehere", "pipihi", "ikarangi", "kiato", "huanui", "puaroa", "keteparaha", "rongo ā-puku", "kaitākaro", "wātaka", "mohoaotanga", "whakamaru", "tūruhi", "puna torotī", "kukuwhatanga", "konutai", "kōwhiri", "huritau", "ringatoi", "kaimātakitaki", "wharekai", "rangirua"};//Ambiguous
 string[] answers = new string[] { "member", "article", "achieve", "conclusion", "bottom", "ally", "spray", "carry", "jail", "shoot", "galaxy", "compact", "highway", "sacred", "tool", "instinct", "player", "calendar", "isolation", "protection", "tourist", "fountain", "evolution", "sodium", "choose", "anniversary", "artist", "audience", "coast", "ambiguous"};
 string[] options = new string[] { "dilemma", "memory", "remember", "attic", "attend", "athletic", "agile", "trolley", "trust", "measure", "mountain", "mechanic", "withdraw", "waiter", "builder", "heat", "helmet", "helping", "wrestle", "wardrobe", "wine", "positivity", "contain", "clapping", "mansion", "construction", "mall", "peeking", "produce", "liar", "inclusive", "irony", "feast", "know", "kidney", "prestige", "headquarters", "hardship", "harbor", "sacrifice", "smash", "portal", "container", "kitchen", "position", "rollercoaster", "incorrect", "oranges", "kite", "breakfast", "cutting", "wildfire", "waxing", "boring", "mohawk", "mountain", "mahogany", "course", "cake", "confront", "towards", "torture", "tournament", "plantation", "pumpkin", "tuna", "coconut", "commotion", "kill", "corner", "cornfield", "tie", "quickly", "coughing", "cigarette", "hurriedly", "furiously", "close", "ringtone", "ring", "reform", "constructing", "repetition", "conversation", "thank", "tax", "technique", "umbrella", "waterfall", "recording"};
+string[] answerLetter = new string[] { "d", "b", "b", "b", "d", "b", "a", "b", "d", "a", "b", "c", "a", "d", "b", "b", "a", "a", "d", "c", "b", "a", "b", "d", "a", "b", "c", "a", "d", "b"};
 
 Console.WriteLine("This Is A '15 Level' Quiz To Increase Or Train Your Knowledge On The Te Reo Maori Language");
-Console.WriteLine("You Are Going To Be Given One Word In Maori And You Are To Type From 4 Words Given That Are Translated In English");
+Console.WriteLine("You Are Going To Be Given One Word In Maori And You Are To Type From The 4 Options 'A, B, C, D' Or The Words Residing In Them");
 Console.WriteLine("If You Guess The Right Translated Word You Are Given Points \nIf You Guess Incorrectly Your Points Is Reduced\n\n");
 
 Console.WriteLine("If You Wish To Stop Anytime During The Quiz Type '-1'");
@@ -30,7 +31,7 @@ if (start.ToLower() == "start")
 
     Console.WriteLine($"Your 1st Word Is... {words[quizNum]}");
     Console.WriteLine($"A. {options[0]} \nB. {options[1]} \nC. {options[2]} \nD. {answers[0]} \n(Remember To Type The Word)");
- 
+
 
 
     while (quizNum != 15)
@@ -41,10 +42,13 @@ if (start.ToLower() == "start")
         {
             for (int j = 0; j < answers.Length; j++) // Loops through the answers Array With Index j
             {
-                // Accepts Input If It's A Word In answers, options Array, or -1
-                if (guess == answers[j].ToLower() || guess == options[i].ToLower() || guess == "-1")
+                for (int k = 0; k < answerLetter.Length; k++)
                 {
-                    validGuess = true;
+                    // Accepts Input If It's A Word In answers, options Array, or -1
+                    if (guess == answers[j].ToLower() || guess == answerLetter[k].ToLower() || guess == options[i].ToLower() || guess == "-1")
+                    {
+                        validGuess = true;
+                    }
                 }
             }
         }
@@ -57,9 +61,9 @@ if (start.ToLower() == "start")
         {
             break; // Ends Quiz When Input = -1
         }
-        else if (guess != answers[quizNum]) // If It's A Valid Input But Not Answer
+        else if (guess != answers[quizNum] && guess != answerLetter[quizNum]) // If It's A Valid Input But Not Answer
         {
-            Console.WriteLine("Incorrect!"); 
+            Console.WriteLine("Incorrect!");
             score--;
             if (score < 0)
             {
@@ -67,7 +71,7 @@ if (start.ToLower() == "start")
             }
 
         }
-        if (guess == answers[quizNum])
+        if (guess == answers[quizNum] || guess == answerLetter[quizNum])
         {
             Console.WriteLine("Correct!\n");
             score += 2;
@@ -187,10 +191,13 @@ if (guess != "-1")
             {
                 for (int j = 0; j < answers.Length; j++) // Loops through the answers Array With Index j
                 {
-                    // Accepts Input If It's A Word In answers, options Array, or -1
-                    if (guess == answers[j].ToLower() || guess == options[i].ToLower() || guess == "-1")
+                    for (int k = 0; k < answers.Length; k++)
                     {
-                        validGuess = true;
+                        // Accepts Input If It's A Word In answers, options Array, or -1
+                        if (guess == answers[j].ToLower() || guess == answerLetter[k].ToLower() || guess == options[i].ToLower() || guess == "-1")
+                        {
+                            validGuess = true;
+                        }
                     }
                 }
             }
@@ -203,7 +210,7 @@ if (guess != "-1")
             {
                 break; // Ends Quiz When Input = -1
             }
-            else if (guess != answers[quizNum]) // If It's A Valid Input But Not Answer
+            else if (guess != answers[quizNum] && guess != answerLetter[quizNum]) // If It's A Valid Input But Not Answer
             {
                 Console.WriteLine("Incorrect!");
                 score--;
@@ -213,7 +220,7 @@ if (guess != "-1")
                 }
 
             }
-            if (guess == answers[quizNum])
+            if (guess == answers[quizNum] || guess == answerLetter[quizNum])
             {
                 Console.WriteLine("Correct!\n");
                 score += 2;
