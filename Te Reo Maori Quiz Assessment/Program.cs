@@ -1,22 +1,61 @@
 ﻿/* Te Reo Maori Quiz Assessment */
-
-
+bool quizRunning = true;
 int score = 0;
 bool validGuess = false;
 int quizNum = 0;
 string guess = "";
+string menuInput = "";
+string scoreDisplay(int score)
+{
+    if (quizNum <= 15)
+    {
+        return $"Your Score Is Currently {score}/30\n";
+    }
+    else if (quizNum > 15)
+    {
+        return $"Your Score Is Currently {score}/60\n";
+    }
+    return "";
+}
+
+string mainMenu()
+{
+    Console.Clear();
+    Console.WriteLine(scoreDisplay(score));
+    Console.WriteLine($"This Is The Main Menu \n\nIf You Would Like To Exit This Quiz Type '-1' \nOR\nAny Key If You Would Like To Continue This Quiz");
+    menuInput = Console.ReadLine();
+
+    /*   while (menuInput != "-1" && menuInput.ToLower() != "resume")
+       {
+
+           if (menuInput == "-1" && quizNum <= 15)
+           {
+               Console.WriteLine($"Your Total Score Was {score}/30");
+               Environment.Exit(0);
+           }
+           else if (menuInput == "-1" && quizNum > 15)
+           {
+               Console.WriteLine($"Your Total Score Was {score}/60");
+               Environment.Exit(0);
+           }
+           Console.WriteLine("Please Type Either...\n'-1' To Exit The Quiz\nOR\n'resume' To Resume The Quiz");
+           menuInput = Console.ReadLine();
+
+       }*/
+    return menuInput;
+}
 
 // words = Maori Words | answers = Correct Word | options = Filler Words
-string[] words = new string[] { "mema", "atikara", "tutuki", "mutunga", "whakatakere", "haumi", "wairehu", "pakihere", "whare herehere", "pipihi", "ikarangi", "kiato", "huanui", "puaroa", "keteparaha", "rongo ā-puku", "kaitākaro", "wātaka", "mohoaotanga", "whakamaru", "tūruhi", "puna torotī", "kukuwhatanga", "konutai", "kōwhiri", "huritau", "ringatoi", "kaimātakitaki", "wharekai", "rangirua"};//Ambiguous
-string[] answers = new string[] { "member", "article", "achieve", "conclusion", "bottom", "ally", "spray", "carry", "jail", "shoot", "galaxy", "compact", "highway", "sacred", "tool", "instinct", "player", "calendar", "isolation", "protection", "tourist", "fountain", "evolution", "sodium", "choose", "anniversary", "artist", "audience", "coast", "ambiguous"};
-string[] options = new string[] { "dilemma", "memory", "remember", "attic", "attend", "athletic", "agile", "trolley", "trust", "measure", "mountain", "mechanic", "withdraw", "waiter", "builder", "heat", "helmet", "helping", "wrestle", "wardrobe", "wine", "positivity", "contain", "clapping", "mansion", "construction", "mall", "peeking", "produce", "liar", "inclusive", "irony", "feast", "know", "kidney", "prestige", "headquarters", "hardship", "harbor", "sacrifice", "smash", "portal", "container", "kitchen", "position", "rollercoaster", "incorrect", "oranges", "kite", "breakfast", "cutting", "wildfire", "waxing", "boring", "mohawk", "mountain", "mahogany", "course", "cake", "confront", "towards", "torture", "tournament", "plantation", "pumpkin", "tuna", "coconut", "commotion", "kill", "corner", "cornfield", "tie", "quickly", "coughing", "cigarette", "hurriedly", "furiously", "close", "ringtone", "ring", "reform", "constructing", "repetition", "conversation", "thank", "tax", "technique", "umbrella", "waterfall", "recording"};
-string[] answerLetter = new string[] { "d", "b", "b", "b", "d", "b", "a", "b", "d", "a", "b", "c", "a", "d", "b", "b", "a", "a", "d", "c", "b", "a", "b", "d", "a", "b", "c", "a", "d", "b"};
+string[] words = new string[] { "mema", "atikara", "tutuki", "mutunga", "whakatakere", "haumi", "wairehu", "pakihere", "whare herehere", "pipihi", "ikarangi", "kiato", "huanui", "puaroa", "keteparaha", "rongo ā-puku", "kaitākaro", "wātaka", "mohoaotanga", "whakamaru", "tūruhi", "puna torotī", "kukuwhatanga", "konutai", "kōwhiri", "huritau", "ringatoi", "kaimātakitaki", "wharekai", "rangirua" };//Ambiguous
+string[] answers = new string[] { "member", "article", "achieve", "conclusion", "bottom", "ally", "spray", "carry", "jail", "shoot", "galaxy", "compact", "highway", "sacred", "tool", "instinct", "player", "calendar", "isolation", "protection", "tourist", "fountain", "evolution", "sodium", "choose", "anniversary", "artist", "audience", "coast", "ambiguous" };
+string[] options = new string[] { "dilemma", "memory", "remember", "attic", "attend", "athletic", "agile", "trolley", "trust", "measure", "mountain", "mechanic", "withdraw", "waiter", "builder", "heat", "helmet", "helping", "wrestle", "wardrobe", "wine", "positivity", "contain", "clapping", "mansion", "construction", "mall", "peeking", "produce", "liar", "inclusive", "irony", "feast", "know", "kidney", "prestige", "headquarters", "hardship", "harbor", "sacrifice", "smash", "portal", "container", "kitchen", "position", "rollercoaster", "incorrect", "oranges", "kite", "breakfast", "cutting", "wildfire", "waxing", "boring", "mohawk", "mountain", "mahogany", "course", "cake", "confront", "towards", "torture", "tournament", "plantation", "pumpkin", "tuna", "coconut", "commotion", "kill", "corner", "cornfield", "tie", "quickly", "coughing", "cigarette", "hurriedly", "furiously", "close", "ringtone", "ring", "reform", "constructing", "repetition", "conversation", "thank", "tax", "technique", "umbrella", "waterfall", "recording" };
+string[] answerLetter = new string[] { "d", "b", "b", "b", "d", "b", "a", "b", "d", "a", "b", "c", "a", "d", "b", "b", "a", "a", "d", "c", "b", "a", "b", "d", "a", "b", "c", "a", "d", "b" };
 
 Console.WriteLine("This Is A '15 Level' Quiz To Increase Or Train Your Knowledge On The Te Reo Maori Language");
 Console.WriteLine("You Are Going To Be Given One Word In Maori And You Are To Type From The 4 Options 'A, B, C, D' Or The Words Residing In Them");
 Console.WriteLine("If You Guess The Right Translated Word You Are Given Points \nIf You Guess Incorrectly Your Points Is Reduced\n\n");
 
-Console.WriteLine("If You Wish To Stop Anytime During The Quiz Type '-1'");
+Console.WriteLine("If You Wish To Enter The Main Menu During The Quiz Type 'menu'");
 Console.WriteLine("To Start The Quiz Type: 'start' ");
 string start = Console.ReadLine();
 
@@ -45,7 +84,7 @@ if (start.ToLower() == "start")
                 for (int k = 0; k < answerLetter.Length; k++)
                 {
                     // Accepts Input If It's A Word In answers, options Array, or -1
-                    if (guess == answers[j].ToLower() || guess == answerLetter[k].ToLower() || guess == options[i].ToLower() || guess == "-1")
+                    if (guess == answers[j].ToLower() || guess == answerLetter[k].ToLower() || guess == options[i].ToLower() || guess == "-1" || guess == "menu")
                     {
                         validGuess = true;
                     }
@@ -59,7 +98,16 @@ if (start.ToLower() == "start")
         }
         else if (guess == "-1")
         {
+            quizRunning = false;
             break; // Ends Quiz When Input = -1
+        }
+        else if (guess == "menu")
+        {
+            guess = mainMenu();
+            if (guess == "-1")
+            {
+                break;
+            }
         }
         else if (guess != answers[quizNum] && guess != answerLetter[quizNum]) // If It's A Valid Input But Not Answer
         {
@@ -79,14 +127,14 @@ if (start.ToLower() == "start")
 
             switch (quizNum)
             {
-                case  1:
-                Console.WriteLine($"Your 2nd Word Is... {words[quizNum]}");
-                Console.WriteLine($"A. {options[3]} \nB. {answers[1]} \nC. {options[4]} \nD. {options[5]} \n(Remember To Type The Word)");
+                case 1:
+                    Console.WriteLine($"Your 2nd Word Is... {words[quizNum]}");
+                    Console.WriteLine($"A. {options[3]} \nB. {answers[1]} \nC. {options[4]} \nD. {options[5]} \n(Remember To Type The Word)");
                     break;
 
                 case 2:
-                Console.WriteLine($"Your 3rd Word Is... {words[quizNum]}");
-                Console.WriteLine($"A. {options[6]} \nB. {answers[2]} \nC. {options[7]} \nD. {options[8]} \n(Remember To Type The Word)");
+                    Console.WriteLine($"Your 3rd Word Is... {words[quizNum]}");
+                    Console.WriteLine($"A. {options[6]} \nB. {answers[2]} \nC. {options[7]} \nD. {options[8]} \n(Remember To Type The Word)");
                     break;
 
                 case 3:
@@ -224,7 +272,7 @@ if (guess != "-1")
             {
                 Console.WriteLine("Correct!\n");
                 score += 2;
-                
+
 
                 switch (quizNum)
                 {
