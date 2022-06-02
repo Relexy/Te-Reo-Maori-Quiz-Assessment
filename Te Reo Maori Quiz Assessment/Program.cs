@@ -276,7 +276,10 @@ if (start.ToLower() == "start")
             Console.WriteLine("Correct!\n");
             score += 2;
             quizNum++;
-            quizQuestions(quizNum); //Calls Method to display next question
+            if (quizNum < 15)
+            {
+                quizQuestions(quizNum); //Calls Method to display next question
+            }
         }
         validGuess = false;
     }
@@ -378,8 +381,8 @@ if (guess != "-1")
                 quizNum++;
                 quizQuestions(quizNum); //Calls Method to display next question
             }
+            validGuess = false;
         }
-        validGuess = false;
     }
     Console.WriteLine($"Your Total Score Is: {score}/60");
 }
