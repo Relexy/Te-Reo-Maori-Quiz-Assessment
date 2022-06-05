@@ -300,18 +300,17 @@ if (start.ToLower() == "start")
         }
         else if (guess != answers[quizNum] && guess != answerLetter[quizNum]) // If It's A Valid Input But Not Answer
         {
-            Console.WriteLine("Incorrect!");
             score--;
             if (score < 0)
             {
                 score = 0; // Score Won't Go Less Than 0
             }
-
+            Console.WriteLine($"Incorrect!                                                                               Your Score Is Currently: {score}/30");
         }
         if (guess == answers[quizNum] || guess == answerLetter[quizNum])
         {
-            Console.WriteLine("Correct!\n");
             score += 2;
+            Console.WriteLine($"Correct!                                                                                 Your Score Is Currently: {score}/30\n");
             quizNum++;
             if (quizNum < 15)
             {
@@ -404,18 +403,17 @@ if (guess != "-1")
             }
             else if (guess != answers[quizNum] && guess != answerLetter[quizNum]) // If It's A Valid Input But Not Answer
             {
-                Console.WriteLine("Incorrect!");
                 score--;
                 if (score < 0)
                 {
                     score = 0; // Score Won't Go Less Than 0
                 }
-
+                Console.WriteLine($"Incorrect!                                                                               Your Score Is Currently: {score}/60");
             }
             if (guess == answers[quizNum] || guess == answerLetter[quizNum])
             {
-                Console.WriteLine("Correct!\n");
                 score += 2;
+                Console.WriteLine($"Correct!                                                                                 Your Score Is Currently: {score}/60\n");
                 quizNum++;
                 quizQuestions(quizNum); //Calls Method to display next question
             }
