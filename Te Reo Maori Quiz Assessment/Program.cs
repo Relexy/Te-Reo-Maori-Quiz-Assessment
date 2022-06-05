@@ -310,6 +310,8 @@ if (start.ToLower() == "start")
         if (guess == answers[quizNum] || guess == answerLetter[quizNum])
         {
             score += 2;
+            Console.Clear();
+            Console.WriteLine($"{answers[quizNum]} Was...");
             Console.WriteLine($"Correct!                                                                                 Your Score Is Currently: {score}/30\n");
             quizNum++;
             if (quizNum < 15)
@@ -413,6 +415,8 @@ if (guess != "-1")
             if (guess == answers[quizNum] || guess == answerLetter[quizNum])
             {
                 score += 2;
+                Console.Clear();
+                Console.WriteLine($"{answers[quizNum]} Was...");
                 Console.WriteLine($"Correct!                                                                                 Your Score Is Currently: {score}/60\n");
                 quizNum++;
                 quizQuestions(quizNum); //Calls Method to display next question
