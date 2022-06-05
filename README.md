@@ -11,7 +11,7 @@ If the user types “menu” during the quiz, it clears previous text and tells 
 
 When the user completes 15 levels they are shown their total score and are given an option. Do another 15 levels or quit. If the user proceeds to do another 15 levels, the process repeats once more with a different Maori word and different English word choices on each level. If the user quits, the program is closed.
 
-To use the program the key requirement is a keyboard as they user only needs to type
+To use the program the key requirement is a keyboard as the user only needs to type
 To Download This Program Click The Link Below VVV
 
 https://drive.google.com/file/d/1x4MpO6Hk42DDpjtg6_QaNgnAHb3cyQMh/view?usp=sharing
